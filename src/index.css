@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-green: #00ff88;
+  --neon-purple: #8b5cf6;
+  --neon-blue: #00d4ff;
+  --neon-pink: #ff0080;
+  --dark-bg: #0a0a0f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-green) var(--dark-bg);
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--dark-bg);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-green), var(--neon-purple));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--neon-purple), var(--neon-pink));
+}
+
+::selection {
+  background: var(--neon-green);
+  color: var(--dark-bg);
+}
+
+.gradient-text { @apply bg-gradient-to-r from-[#066c1a] via-[#0293b7] to-[#0065F8];
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-animated {
+  background: linear-gradient(
+    270deg,
+    var(--neon-green),
+    var(--neon-blue),
+    var(--neon-purple),
+    var(--neon-pink)
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.glow-green {
+  box-shadow:
+    0 0 20px var(--neon-green),
+    0 0 40px var(--neon-green),
+    0 0 60px var(--neon-green);
+}
+
+.glow-purple {
+  box-shadow:
+    0 0 20px var(--neon-purple),
+    0 0 40px var(--neon-purple),
+    0 0 60px var(--neon-purple);
+}
+
+.text-glow-green {
+  text-shadow:
+    0 0 10px var(--neon-green),
+    0 0 20px var(--neon-green),
+    0 0 30px var(--neon-green);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hover-card {
+  transition: box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+}
+
+.btn-primary {
+  @apply relative px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-500 bg-gradient-to-r from-green-300 to-blue-500 text-white;
+  color: #0a0a0f;
+}
+.night .btn-primary {
+  @apply bg-gradient-to-r from-[#41AEA9] to-[#E8FFFF] text-black;
+}
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  box-shadow:
+    0 0 30px var(--neon-green),
+    0 0 60px var(--neon-green);
+  transform: scale(1.05);
+}
+
+.btn-outline {
+  @apply relative px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-500 text-green-400 border-2 border-green-400;
+  background: transparent;
+}
+
+.night .btn-outline{
+  @apply text-[#359c77] border-[#359c77];
+}
+.btn-outline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--neon-green);
+  transition: width 0.5s;
+  z-index: -1;
+}
+
+.btn-outline:hover::before {
+  width: 100%;
+}
+
+.btn-outline:hover {
+  color: var(--dark-bg);
+}
+
+.morph-shape {
+  animation: morph 8s ease-in-out infinite;
+  background: linear-gradient(135deg, var(--neon-green), var(--neon-purple));
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.float-animation {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-purple));
+  transition: width 0.5s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+.border-gradient {
+  position: relative;
+  background: var(--dark-bg);
+  border-radius: 20px;
+}
+
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    var(--neon-green),
+    var(--neon-purple),
+    var(--neon-blue)
+  );
+  border-radius: inherit;
+  z-index: -1;
+  animation: borderRotate 4s linear infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes borderRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  border-top-color: var(--neon-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  border: 3px solid transparent;
+  border-radius: 50%;
+}
+
+.loader::before {
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-top-color: var(--neon-purple);
+  animation: spin 2s linear infinite reverse;
+}
+
+.loader::after {
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border-top-color: var(--neon-blue);
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
