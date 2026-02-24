@@ -27,14 +27,14 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 lg:mb-6">
             Get in <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">Touch</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -57,7 +57,7 @@ const ContactPage = () => {
             >
               <div className="bg-white rounded-xl lg:rounded-3xl shadow-2xl px-3 py-6 lg:p-8 border border-gray-100 ">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
                     <input
@@ -84,7 +84,7 @@ const ContactPage = () => {
                     />
                   </div>
 
-                  <div>
+                  {/* <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
                     <input
                       type="tel"
@@ -94,7 +94,7 @@ const ContactPage = () => {
                       className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       placeholder="+91 XXXXXXXXXX"
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Service Interest</label>
@@ -121,7 +121,7 @@ const ContactPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows="5"
+                      rows="3"
                       className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                       placeholder="Tell us about your project..."
                     ></textarea>
@@ -131,7 +131,7 @@ const ContactPage = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all"
+                    className="w-full px-8 py-3 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all"
                   >
                     Send Message
                   </motion.button>
@@ -147,7 +147,7 @@ const ContactPage = () => {
               className="space-y-8 overflow-hidden"
             >
               {/* Illustration Card */}
-              <div className="relative lg:h-52 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-3xl overflow-hidden shadow-2xl">
+              {/* <div className="relative lg:h-52 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-3xl overflow-hidden shadow-2xl">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -171,7 +171,7 @@ const ContactPage = () => {
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </motion.svg>
                 </div>
-              </div>
+              </div> */}
 
               {/* Contact Information Cards */}
               <div className="space-y-4">
@@ -281,7 +281,7 @@ const ContactPage = () => {
             </div>
             <div className="relative w-full h-72 md:h-[500px]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.5446587037524!2d85.8379!3d20.2654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7a6a3c5c5c5%3A0x0!2sRasulgarh%2C%20Bhubaneswar%2C%20Odisha!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.187587745186!2d85.85604267109483!3d20.292501103528494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a190b209f372e11%3A0xde69b3e11e31bc20!2sAnantam%20Residency!5e0!3m2!1sen!2sin!4v1771931660921!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -7,11 +7,11 @@ import jp2 from "../assets/team/jp3.png";
 import ls from "../assets/team/ls.jpeg";
 import sd from "../assets/team/Picture10.png";
 import sbd from "../assets/team/sbd.jpeg";
-import sh2 from "../assets/team/sh2.jpg";
+// import sh2 from "../assets/team/sh2.jpg";
+import sh2 from "../assets/team/subrat.jpeg";
 import srd from "../assets/team/srd4.jpeg";
 import gs from "../assets/team/gs.jpeg";
 import aa from "../assets/team/aa.jpeg";
-
 
 
 const AboutPage = () => {
