@@ -153,135 +153,135 @@ export default function Dashboard() {
 }
 
 
-const StatCard = ({ label, value, color, to }) => (
-  <Link
-    to={to}
-    className={`block bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-${color}-500 transition`}
-  >
-    <p className="text-gray-400 text-sm mb-1">{label}</p>
-    <p className="text-3xl font-bold text-white">{value}</p>
-  </Link>
-);
+// const StatCard = ({ label, value, color, to }) => (
+//   <Link
+//     to={to}
+//     className={`block bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-${color}-500 transition`}
+//   >
+//     <p className="text-gray-400 text-sm mb-1">{label}</p>
+//     <p className="text-3xl font-bold text-white">{value}</p>
+//   </Link>
+// );
 
-export default function Dashboard() {
-  const { token } = useAdminAuth();
-  const [stats, setStats] = useState(null);
-  const [recentContacts, setRecentContacts] = useState([]);
+// export default function Dashboard() {
+//   const { token } = useAdminAuth();
+//   const [stats, setStats] = useState(null);
+//   const [recentContacts, setRecentContacts] = useState([]);
 
-  useEffect(() => {
-    const headers = { Authorization: `Bearer ${token}` };
+//   useEffect(() => {
+//     const headers = { Authorization: `Bearer ${token}` };
 
-    Promise.all([
-      fetch("http://localhost:5000/api/contact/admin/stats", { headers }).then(
-        (r) => r.json(),
-      ),
-      fetch("http://localhost:5000/api/contact/admin?limit=5", {
-        headers,
-      }).then((r) => r.json()),
-    ]).then(([statsData, contactsData]) => {
-      if (statsData.success) setStats(statsData.data);
-      if (contactsData.success) setRecentContacts(contactsData.data);
-    });
-  }, [token]);
+//     Promise.all([
+//       fetch("http://localhost:5000/api/contact/admin/stats", { headers }).then(
+//         (r) => r.json(),
+//       ),
+//       fetch("http://localhost:5000/api/contact/admin?limit=5", {
+//         headers,
+//       }).then((r) => r.json()),
+//     ]).then(([statsData, contactsData]) => {
+//       if (statsData.success) setStats(statsData.data);
+//       if (contactsData.success) setRecentContacts(contactsData.data);
+//     });
+//   }, [token]);
 
-  const getCount = (status) =>
-    stats?.stats.find((s) => s._id === status)?.count ?? 0;
+//   const getCount = (status) =>
+//     stats?.stats.find((s) => s._id === status)?.count ?? 0;
 
-  return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold text-white mb-2">Dashboard</h1>
-      <p className="text-gray-400 text-sm mb-8">
-        Welcome back! Here's what's happening.
-      </p>
+//   return (
+//     <div className="p-8">
+//       <h1 className="text-2xl font-bold text-white mb-2">Dashboard</h1>
+//       <p className="text-gray-400 text-sm mb-8">
+//         Welcome back! Here's what's happening.
+//       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard
-          label="Total Messages"
-          value={stats?.total ?? "—"}
-          color="purple"
-          to="/admin/contacts"
-        />
-        <StatCard
-          label="New (Unread)"
-          value={getCount("new")}
-          color="blue"
-          to="/admin/contacts?status=new"
-        />
-        <StatCard
-          label="Replied"
-          value={getCount("replied")}
-          color="green"
-          to="/admin/contacts?status=replied"
-        />
-        <StatCard
-          label="Archived"
-          value={getCount("archived")}
-          color="gray"
-          to="/admin/contacts?status=archived"
-        />
-      </div>
+//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+//         <StatCard
+//           label="Total Messages"
+//           value={stats?.total ?? "—"}
+//           color="purple"
+//           to="/admin/contacts"
+//         />
+//         <StatCard
+//           label="New (Unread)"
+//           value={getCount("new")}
+//           color="blue"
+//           to="/admin/contacts?status=new"
+//         />
+//         <StatCard
+//           label="Replied"
+//           value={getCount("replied")}
+//           color="green"
+//           to="/admin/contacts?status=replied"
+//         />
+//         <StatCard
+//           label="Archived"
+//           value={getCount("archived")}
+//           color="gray"
+//           to="/admin/contacts?status=archived"
+//         />
+//       </div>
 
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-white font-semibold">Recent Messages</h2>
-          <Link
-            to="/admin/contacts"
-            className="text-purple-400 hover:text-purple-300 text-sm"
-          >
-            View all →
-          </Link>
-        </div>
+//       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+//         <div className="flex items-center justify-between mb-4">
+//           <h2 className="text-white font-semibold">Recent Messages</h2>
+//           <Link
+//             to="/admin/contacts"
+//             className="text-purple-400 hover:text-purple-300 text-sm"
+//           >
+//             View all →
+//           </Link>
+//         </div>
 
-        {recentContacts.length === 0 ? (
-          <p className="text-gray-500 text-sm py-4 text-center">
-            No messages yet.
-          </p>
-        ) : (
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-gray-500 border-b border-gray-800">
-                <th className="text-left pb-3 font-medium">Name</th>
-                <th className="text-left pb-3 font-medium">Email</th>
-                <th className="text-left pb-3 font-medium">Status</th>
-                <th className="text-left pb-3 font-medium">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentContacts.map((c) => (
-                <tr
-                  key={c._id}
-                  className="border-b border-gray-800/50 hover:bg-gray-800/30"
-                >
-                  <td className="py-3 text-white">{c.name}</td>
-                  <td className="py-3 text-gray-400">{c.email}</td>
-                  <td className="py-3">
-                    <StatusBadge status={c.status} />
-                  </td>
-                  <td className="py-3 text-gray-500">
-                    {new Date(c.createdAt).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-    </div>
-  );
-}
+//         {recentContacts.length === 0 ? (
+//           <p className="text-gray-500 text-sm py-4 text-center">
+//             No messages yet.
+//           </p>
+//         ) : (
+//           <table className="w-full text-sm">
+//             <thead>
+//               <tr className="text-gray-500 border-b border-gray-800">
+//                 <th className="text-left pb-3 font-medium">Name</th>
+//                 <th className="text-left pb-3 font-medium">Email</th>
+//                 <th className="text-left pb-3 font-medium">Status</th>
+//                 <th className="text-left pb-3 font-medium">Date</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {recentContacts.map((c) => (
+//                 <tr
+//                   key={c._id}
+//                   className="border-b border-gray-800/50 hover:bg-gray-800/30"
+//                 >
+//                   <td className="py-3 text-white">{c.name}</td>
+//                   <td className="py-3 text-gray-400">{c.email}</td>
+//                   <td className="py-3">
+//                     <StatusBadge status={c.status} />
+//                   </td>
+//                   <td className="py-3 text-gray-500">
+//                     {new Date(c.createdAt).toLocaleDateString()}
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
 
-function StatusBadge({ status }) {
-  const colors = {
-    new: "bg-blue-900/40 text-blue-300",
-    read: "bg-gray-700 text-gray-300",
-    replied: "bg-green-900/40 text-green-300",
-    archived: "bg-gray-800 text-gray-500",
-  };
-  return (
-    <span
-      className={`px-2 py-0.5 rounded text-xs font-medium ${colors[status] || colors.read}`}
-    >
-      {status}
-    </span>
-  );
-}
+// function StatusBadge({ status }) {
+//   const colors = {
+//     new: "bg-blue-900/40 text-blue-300",
+//     read: "bg-gray-700 text-gray-300",
+//     replied: "bg-green-900/40 text-green-300",
+//     archived: "bg-gray-800 text-gray-500",
+//   };
+//   return (
+//     <span
+//       className={`px-2 py-0.5 rounded text-xs font-medium ${colors[status] || colors.read}`}
+//     >
+//       {status}
+//     </span>
+//   );
+// }
