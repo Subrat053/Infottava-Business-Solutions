@@ -1,69 +1,106 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import Footer from '../NewComponents/Footer';
-import video from '../assets/Motion_Graphics.mp4';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import Footer from "../NewComponents/Footer";
+import video from "../assets/Motion_Graphics.mp4";
+import { useSiteContent, g, gj } from "../hooks/useSiteContent";
+
+const DEFAULT_SERVICES = [
+  {
+    id: "web-development",
+    title: "WEB DEVELOPMENT",
+    icon: "💻",
+    description:
+      "Build powerful, scalable web applications with modern technologies. From responsive websites to complex web platforms, we deliver solutions that drive business growth.",
+    gradient: "from-blue-500 via-blue-600 to-cyan-600",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "app-development",
+    title: "APP DEVELOPMENT",
+    icon: "📱",
+    description:
+      "Create stunning native and cross-platform mobile applications for iOS and Android. Deliver seamless user experiences that keep customers engaged.",
+    gradient: "from-purple-500 via-purple-600 to-pink-600",
+    image:
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "cybersecurity",
+    title: "CYBERSECURITY",
+    icon: "🔒",
+    description:
+      "Protect your digital assets with comprehensive security solutions. From threat detection to compliance management, we safeguard your business.",
+    gradient: "from-red-500 via-orange-500 to-yellow-500",
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "digital-marketing",
+    title: "DIGITAL MARKETING",
+    icon: "📊",
+    description:
+      "Amplify your online presence with data-driven marketing strategies. SEO, social media, PPC, and content marketing to grow your brand.",
+    gradient: "from-green-500 via-emerald-600 to-teal-600",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "ai-driven-services",
+    title: "AI DRIVEN SERVICES",
+    icon: "🤖",
+    description:
+      "Harness the power of artificial intelligence and machine learning. From chatbots to predictive analytics, transform your business with AI.",
+    gradient: "from-indigo-500 via-purple-600 to-pink-600",
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "game-development",
+    title: "GAME DEVELOPMENT",
+    icon: "🎮",
+    description:
+      "Design and develop engaging games for mobile, web, and desktop. Create immersive gaming experiences with stunning graphics and smooth gameplay.",
+    gradient: "from-pink-500 via-rose-600 to-red-600",
+    image:
+      "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&auto=format&fit=crop&q=80",
+  },
+];
+
+const DEFAULT_STATS = [
+  { number: "400+", label: "Projects Completed" },
+  { number: "250+", label: "Happy Clients" },
+  { number: "15+", label: "Expert Team" },
+  { number: "8+", label: "Years Experience" },
+];
+
+const DEFAULT_WHY = [
+  {
+    title: "Expert Team",
+    desc: "50+ certified professionals with diverse expertise",
+  },
+  {
+    title: "Proven Track Record",
+    desc: "500+ successful projects across industries",
+  },
+  {
+    title: "Cutting-Edge Technology",
+    desc: "Latest tools and frameworks for optimal results",
+  },
+  {
+    title: "24/7 Support",
+    desc: "Round-the-clock assistance for your peace of mind",
+  },
+];
 
 const HomePage = () => {
   const [hoveredService, setHoveredService] = useState(null);
+  const c = useSiteContent();
 
-  const services = [
-    {
-      id: 'web-development',
-      title: 'WEB DEVELOPMENT',
-      icon: '💻',
-      description: 'Build powerful, scalable web applications with modern technologies. From responsive websites to complex web platforms, we deliver solutions that drive business growth.',
-      gradient: 'from-blue-500 via-blue-600 to-cyan-600',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80'
-    },
-    {
-      id: 'app-development',
-      title: 'APP DEVELOPMENT',
-      icon: '📱',
-      description: 'Create stunning native and cross-platform mobile applications for iOS and Android. Deliver seamless user experiences that keep customers engaged.',
-      gradient: 'from-purple-500 via-purple-600 to-pink-600',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=80'
-    },
-    {
-      id: 'cybersecurity',
-      title: 'CYBERSECURITY',
-      icon: '🔒',
-      description: 'Protect your digital assets with comprehensive security solutions. From threat detection to compliance management, we safeguard your business.',
-      gradient: 'from-red-500 via-orange-500 to-yellow-500',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80'
-    },
-    {
-      id: 'digital-marketing',
-      title: 'DIGITAL MARKETING',
-      icon: '📊',
-      description: 'Amplify your online presence with data-driven marketing strategies. SEO, social media, PPC, and content marketing to grow your brand.',
-      gradient: 'from-green-500 via-emerald-600 to-teal-600',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80'
-    },
-    {
-      id: 'ai-driven-services',
-      title: 'AI DRIVEN SERVICES',
-      icon: '🤖',
-      description: 'Harness the power of artificial intelligence and machine learning. From chatbots to predictive analytics, transform your business with AI.',
-      gradient: 'from-indigo-500 via-purple-600 to-pink-600',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=80'
-    },
-    {
-      id: 'game-development',
-      title: 'GAME DEVELOPMENT',
-      icon: '🎮',
-      description: 'Design and develop engaging games for mobile, web, and desktop. Create immersive gaming experiences with stunning graphics and smooth gameplay.',
-      gradient: 'from-pink-500 via-rose-600 to-red-600',
-      image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&auto=format&fit=crop&q=80'
-    }
-  ];
-
-  const stats = [
-    { number: '400+', label: 'Projects Completed' },
-    { number: '250+', label: 'Happy Clients' },
-    { number: '15+', label: 'Expert Team' },
-    { number: '8+', label: 'Years Experience' }
-  ];
+  const services = gj(c, "services", "list", DEFAULT_SERVICES);
+  const stats = gj(c, "home", "stats", DEFAULT_STATS);
+  const whyPoints = gj(c, "home", "whyPoints", DEFAULT_WHY);
 
   return (
     <div className="min-h-screen bg-white">
@@ -98,7 +135,7 @@ const HomePage = () => {
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-1/2 left-1/4 w-48 h-48 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl"
           />
-          
+
           {/* Small floating dots */}
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -121,7 +158,7 @@ const HomePage = () => {
               }}
             />
           ))}
-          
+
           {/* Geometric shapes */}
           <motion.div
             animate={{
@@ -147,17 +184,19 @@ const HomePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h1 
+            <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="bg-gradient-to-r from-blue-600 via-green-500 to-cyan-500 bg-clip-text text-transparent">
-                Transform Your
+                {g(c, "home", "heroHeading1", "Transform Your")}
               </span>
               <br />
-              <span className="text-gray-900">Digital Future</span>
+              <span className="text-gray-900">
+                {g(c, "home", "heroHeading2", "Digital Future")}
+              </span>
             </motion.h1>
 
             <motion.p
@@ -166,8 +205,12 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Empowering businesses with innovative solutions in Digital Marketing, Web Development, 
-              Cybersecurity, and AI-Driven Services
+              {g(
+                c,
+                "home",
+                "heroSubtext",
+                "Empowering businesses with innovative solutions in Digital Marketing, Web Development, Cybersecurity, and AI-Driven Services",
+              )}
             </motion.p>
 
             <motion.div
@@ -182,7 +225,7 @@ const HomePage = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
                 >
-                  Get Started
+                  {g(c, "home", "heroCTA1", "Get Started")}
                 </motion.button>
               </Link>
               <Link to="/services">
@@ -191,7 +234,7 @@ const HomePage = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all border-2 border-gray-200"
                 >
-                  Explore Services
+                  {g(c, "home", "heroCTA2", "Explore Services")}
                 </motion.button>
               </Link>
             </motion.div>
@@ -203,8 +246,18 @@ const HomePage = () => {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <svg
+              className="w-6 h-6 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
             </svg>
           </motion.div>
         </div>
@@ -229,7 +282,9 @@ const HomePage = () => {
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-blue-100 text-xs md:text-sm">{stat.label}</div>
+                <div className="text-blue-100 text-xs md:text-sm">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -246,10 +301,15 @@ const HomePage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">Services</span>
+              {g(c, "home", "servicesHeading", "Our Services")}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Comprehensive solutions tailored to elevate your business in the digital age
+              {g(
+                c,
+                "home",
+                "servicesSubtext",
+                "Comprehensive solutions tailored to elevate your business in the digital age",
+              )}
             </p>
           </motion.div>
 
@@ -263,12 +323,16 @@ const HomePage = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer"
-                onClick={() => window.location.href = `/services/${service.id}`}
+                onClick={() =>
+                  (window.location.href = `/services/${service.id}`)
+                }
               >
-                <div className={`relative h-full bg-gradient-to-br ${service.gradient} rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center min-h-[420px]`}>
+                <div
+                  className={`relative h-full bg-gradient-to-br ${service.gradient} rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center min-h-[420px]`}
+                >
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+
                   <div className="relative z-10 flex flex-col items-center flex-1">
                     {/* Icon */}
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300 text-6xl">
@@ -314,19 +378,24 @@ const HomePage = () => {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Why Choose <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">Infotattva Business Solutions?</span>
+                {g(
+                  c,
+                  "home",
+                  "whyHeading",
+                  "Why Choose Infotattva Business Solutions?",
+                )}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                We combine innovation, expertise, and dedication to deliver exceptional results that drive your business forward.
+                {g(
+                  c,
+                  "home",
+                  "whySubtext",
+                  "We combine innovation, expertise, and dedication to deliver exceptional results that drive your business forward.",
+                )}
               </p>
-              
+
               <div className="space-y-6">
-                {[
-                  { title: 'Expert Team', desc: '50+ certified professionals with diverse expertise' },
-                  { title: 'Proven Track Record', desc: '500+ successful projects across industries' },
-                  { title: 'Cutting-Edge Technology', desc: 'Latest tools and frameworks for optimal results' },
-                  { title: '24/7 Support', desc: 'Round-the-clock assistance for your peace of mind' }
-                ].map((item, index) => (
+                {whyPoints.map((item, index) => (
                   <motion.div
                     key={item.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -339,7 +408,9 @@ const HomePage = () => {
                       {index + 1}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">
+                        {item.title}
+                      </h3>
                       <p className="text-sm text-gray-600">{item.desc}</p>
                     </div>
                   </motion.div>
@@ -347,9 +418,14 @@ const HomePage = () => {
               </div>
             </motion.div>
 
-            <div className='w-full rounded-2xl'>
-              <video src={video} autoPlay loop muted 
-              className='rounded-2xl'></video>
+            <div className="w-full rounded-2xl">
+              <video
+                src={video}
+                autoPlay
+                loop
+                muted
+                className="rounded-2xl"
+              ></video>
             </div>
           </div>
         </div>
@@ -364,10 +440,15 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Transform Your Business?
+              {g(c, "home", "ctaHeading", "Ready to Transform Your Business?")}
             </h2>
             <p className="text-lg text-blue-100 mb-10">
-              Let's discuss how we can help you achieve your digital goals
+              {g(
+                c,
+                "home",
+                "ctaSubtext",
+                "Let's discuss how we can help you achieve your digital goals",
+              )}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
@@ -376,7 +457,7 @@ const HomePage = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-white text-blue-600 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all"
                 >
-                  Start Your Project
+                  {g(c, "home", "ctaCTA1", "Start Your Project")}
                 </motion.button>
               </Link>
               <Link to="/about">
@@ -385,7 +466,7 @@ const HomePage = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all"
                 >
-                  Learn More About Us
+                  {g(c, "home", "ctaCTA2", "Learn More About Us")}
                 </motion.button>
               </Link>
             </div>
