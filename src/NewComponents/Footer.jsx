@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import logo from '../../public/logo-rmbg.png';
+import logo from '../assets/team/logo-rmbg.png';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();

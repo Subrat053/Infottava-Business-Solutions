@@ -7,14 +7,14 @@ import { useSiteContent, g, gj } from "../hooks/useSiteContent";
 import jp2 from "../assets/team/jp3.png";
 import ls from "../assets/team/ls.jpeg";
 import sd from "../assets/team/Picture10.png";
-import sbd from "../assets/team/sbd.jpeg";
+import akm from "../assets/team/akm.jpg";
 // import sh2 from "../assets/team/sh2.jpg";
 import sh2 from "../assets/team/subrat.jpeg";
 import srd from "../assets/team/srd4.jpeg";
 import gs from "../assets/team/gs.jpeg";
 import aa from "../assets/team/aa.jpeg";
 
-const LOCAL_IMAGES = { sd, jp2, sbd, gs, srd, sh2, ls, aa };
+const LOCAL_IMAGES = { sd, jp2, akm, gs, srd, sh2, ls, aa };
 
 const DEFAULT_TEAM = [
   {
@@ -38,12 +38,12 @@ const DEFAULT_TEAM = [
     email: "#",
   },
   {
-    name: "Subhankar Dash",
-    role: "Mern Stack & Flutter Developer",
-    imageKey: "sbd",
+    name: "Alok Kumar Mishra",
+    role: "Mern Stack Developer",
+    imageKey: "akm",
     gradient: "from-emerald-500 via-green-500 to-teal-500",
     bgGradient: "from-emerald-50 to-green-50",
-    description: "Full-stack expert specializing in scalable applications",
+    description: "Backend specialist with expertise in cutting-edge web solutions",
     linkedin: "#",
     email: "#",
   },

@@ -7,31 +7,17 @@ import ServiceDetailPage from "./pages/ServiceDetailPage";
 import CareerPage from "./pages/CareerPage";
 import ContactPage from "./pages/ContactPage";
 import ScrollToTop from "./components/ScrollToTop";
+import Admin from "./admin2/Admin";
 
 // Admin panel
-import { AdminAuthProvider } from "./admin/AdminAuthContext";
-import AdminLogin from "./admin/AdminLogin";
-import AdminLayout from "./admin/AdminLayout";
-import ProtectedRoute from "./admin/ProtectedRoute";
-import Dashboard from "./admin/pages/Dashboard";
-import ContactMessages from "./admin/pages/ContactMessages";
-import ContentManager from "./admin/pages/ContentManager";
-import MediaManager from "./admin/pages/MediaManager";
+// import { AdminAuthProvider } from "./admin/AdminAuthContext";
+
 
 function App() {
   return (
-    <AdminAuthProvider>
       <Routes>
-        {/* ── Admin routes (no site header/footer) ── */}
-        <Route path="/login" element={<AdminLogin />} />
-        <Route element={<ProtectedRoute />}>
-          <Route element={<AdminLayout />}>
-            <Route path="/admin" element={<Dashboard />} />
-            <Route path="/admin/contacts" element={<ContactMessages />} />
-            <Route path="/admin/content" element={<ContentManager />} />
-            <Route path="/admin/media" element={<MediaManager />} />
-          </Route>
-        </Route>
+        <Route path="/admin/*" element={<Admin/>}/>
+
 
         {/* ── Public website routes ── */}
         <Route
@@ -55,7 +41,6 @@ function App() {
           }
         />
       </Routes>
-    </AdminAuthProvider>
   );
 }
 

@@ -5,76 +5,6 @@ import Footer from "../NewComponents/Footer";
 import video from "../assets/Motion_Graphics.mp4";
 import { useSiteContent, g, gj } from "../hooks/useSiteContent";
 
-const DEFAULT_SERVICES = [
-  {
-    id: "web-development",
-    title: "WEB DEVELOPMENT",
-    icon: "💻",
-    description:
-      "Build powerful, scalable web applications with modern technologies. From responsive websites to complex web platforms, we deliver solutions that drive business growth.",
-    gradient: "from-blue-500 via-blue-600 to-cyan-600",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "app-development",
-    title: "APP DEVELOPMENT",
-    icon: "📱",
-    description:
-      "Create stunning native and cross-platform mobile applications for iOS and Android. Deliver seamless user experiences that keep customers engaged.",
-    gradient: "from-purple-500 via-purple-600 to-pink-600",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "cybersecurity",
-    title: "CYBERSECURITY",
-    icon: "🔒",
-    description:
-      "Protect your digital assets with comprehensive security solutions. From threat detection to compliance management, we safeguard your business.",
-    gradient: "from-red-500 via-orange-500 to-yellow-500",
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "digital-marketing",
-    title: "DIGITAL MARKETING",
-    icon: "📊",
-    description:
-      "Amplify your online presence with data-driven marketing strategies. SEO, social media, PPC, and content marketing to grow your brand.",
-    gradient: "from-green-500 via-emerald-600 to-teal-600",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "ai-driven-services",
-    title: "AI DRIVEN SERVICES",
-    icon: "🤖",
-    description:
-      "Harness the power of artificial intelligence and machine learning. From chatbots to predictive analytics, transform your business with AI.",
-    gradient: "from-indigo-500 via-purple-600 to-pink-600",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "game-development",
-    title: "GAME DEVELOPMENT",
-    icon: "🎮",
-    description:
-      "Design and develop engaging games for mobile, web, and desktop. Create immersive gaming experiences with stunning graphics and smooth gameplay.",
-    gradient: "from-pink-500 via-rose-600 to-red-600",
-    image:
-      "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&auto=format&fit=crop&q=80",
-  },
-];
-
-const DEFAULT_STATS = [
-  { number: "400+", label: "Projects Completed" },
-  { number: "250+", label: "Happy Clients" },
-  { number: "15+", label: "Expert Team" },
-  { number: "8+", label: "Years Experience" },
-];
-
 const DEFAULT_WHY = [
   {
     title: "Expert Team",
@@ -98,8 +28,8 @@ const HomePage = () => {
   const [hoveredService, setHoveredService] = useState(null);
   const c = useSiteContent();
 
-  const services = gj(c, "services", "list", DEFAULT_SERVICES);
-  const stats = gj(c, "home", "stats", DEFAULT_STATS);
+  const services = c?.services || [];
+  const stats = c?.stats || [];
   const whyPoints = gj(c, "home", "whyPoints", DEFAULT_WHY);
 
   return (
@@ -280,7 +210,7 @@ const HomePage = () => {
                   className="text-3xl md:text-4xl font-bold text-white mb-2"
                   whileHover={{ scale: 1.1 }}
                 >
-                  {stat.number}
+                  {stat.value}{stat.suffix}
                 </motion.div>
                 <div className="text-blue-100 text-xs md:text-sm">
                   {stat.label}
@@ -324,7 +254,7 @@ const HomePage = () => {
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer"
                 onClick={() =>
-                  (window.location.href = `/services/${service.id}`)
+                  (window.location.href = `/services/${service.slug}`)
                 }
               >
                 <div
@@ -345,12 +275,12 @@ const HomePage = () => {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-white/90 leading-relaxed mb-6 flex-1">
-                      {service.description}
+                    <p className="text-sm text-white/90 leading-relaxed mb-6 flex-1 h-24 line-clamp-4">
+                      {service.shortDescription}
                     </p>
 
                     {/* CTA Button */}
-                    <Link to={`/services/${service.id}`}>
+                    <Link to={`/services/${service.slug}`}>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
