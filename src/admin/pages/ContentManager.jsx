@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAdminAuth } from "../AdminAuthContext";
 import { invalidateContentCache } from "../../hooks/useSiteContent";
+import { apiUrl } from "../../config/api";
 
 const SECTIONS = ["home", "about", "services", "footer"];
-const API = "http://localhost:5000/api/admin/content";
+const API = apiUrl("/api/admin/content");
 
 export default function ContentManager() {
   const { token } = useAdminAuth();

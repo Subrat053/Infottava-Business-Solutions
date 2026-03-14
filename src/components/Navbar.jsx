@@ -64,7 +64,10 @@ const Navbar = ({ onHover, onLeave }) => {
               <span className="text-neon-blue">Info</span>
               <span className="text-neon-green">tattva</span>
             </span> */}
-            <img src="/logo-rmbg.png" alt="InfoTattva Logo" className="w-16 h-16 lg:scale-150 " />
+            <picture>
+              <source srcSet="/logo-rmbg.webp" type="image/webp" />
+              <img src="/logo-rmbg.png" alt="InfoTattva Logo" width="64" height="64" loading="eager" className="w-16 h-16 lg:scale-150 " />
+            </picture>
           </motion.a>
 
           {/* Desktop Navigation */}

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./NewComponents/header";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -49,6 +49,7 @@ function App() {
                   element={<ServiceDetailPage />}
                 />
                 <Route path="/career" element={<CareerPage />} />
+                <Route path="/careers" element={<Navigate to="/career" replace />} />
                 <Route path="/contact" element={<ContactPage />} />
               </Routes>
             </div>

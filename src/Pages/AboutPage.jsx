@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import Footer from "../NewComponents/Footer";
 import { useSiteContent, g, gj } from "../hooks/useSiteContent";
@@ -7,14 +8,15 @@ import { useSiteContent, g, gj } from "../hooks/useSiteContent";
 import jp2 from "../assets/team/jp3.png";
 import ls from "../assets/team/ls.jpeg";
 import sd from "../assets/team/Picture10.png";
-import sbd from "../assets/team/sbd.jpeg";
+import akm from "../assets/team/akm.jpeg";
 // import sh2 from "../assets/team/sh2.jpg";
 import sh2 from "../assets/team/subrat.jpeg";
 import srd from "../assets/team/srd4.jpeg";
 import gs from "../assets/team/gs.jpeg";
 import aa from "../assets/team/aa.jpeg";
+import { BRAND_NAME, DEFAULT_OG_IMAGE, buildCanonicalUrl } from "../seo/siteMeta";
 
-const LOCAL_IMAGES = { sd, jp2, sbd, gs, srd, sh2, ls, aa };
+const LOCAL_IMAGES = { sd, jp2, akm, gs, srd, sh2, ls, aa };
 
 const DEFAULT_TEAM = [
   {
@@ -38,12 +40,12 @@ const DEFAULT_TEAM = [
     email: "#",
   },
   {
-    name: "Subhankar Dash",
-    role: "Mern Stack & Flutter Developer",
-    imageKey: "sbd",
+    name: "Alok Kumar Mishra",
+    role: "Mern Stack Developer",
+    imageKey: "akm",
     gradient: "from-emerald-500 via-green-500 to-teal-500",
     bgGradient: "from-emerald-50 to-green-50",
-    description: "Full-stack expert specializing in scalable applications",
+    description: "Mern Stack expert specializing in scalable applications",
     linkedin: "#",
     email: "#",
   },
@@ -116,6 +118,33 @@ const AboutPage = () => {
   const aboutStats = gj(c, "about", "stats", DEFAULT_ABOUT_STATS);
   return (
     <div className="min-h-screen bg-white pt-20">
+      <Helmet>
+        <title>About Infotattva | Digital Marketing Agency in India | About | {BRAND_NAME}</title>
+        <meta name="description" content="Learn about Infottava Business Solutions — our mission, vision, team, and expertise in digital transformation and technology services." />
+        <meta name="keywords" content="About Digital Marketing Company India, SEO Experts India, Branding Agency India, Global Marketing Agency" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`About | ${BRAND_NAME}`} />
+        <meta property="og:description" content="Mission, vision, and team behind Infottava Business Solutions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={BRAND_NAME} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:url" content={buildCanonicalUrl('/about')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`About | ${BRAND_NAME}`} />
+        <meta name="twitter:description" content="Mission, vision, and team behind Infottava Business Solutions." />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <link rel="canonical" href={buildCanonicalUrl('/about')} />
+      </Helmet>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": buildCanonicalUrl("/") },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": buildCanonicalUrl("/about") }
+          ]
+        })}</script>
+      </Helmet>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.div
@@ -397,8 +426,15 @@ const AboutPage = () => {
                             transition={{ duration: 0.3 }}
                           >
                             <img
-                              src={member.image}
+                              src={member.image || sd}
                               alt={member.name}
+                              width="128"
+                              height="128"
+                              onError={(e) => {
+                                if (e.currentTarget.dataset.fallbackApplied) return;
+                                e.currentTarget.dataset.fallbackApplied = "true";
+                                e.currentTarget.src = sd;
+                              }}
                               className="w-full h-full object-cover"
                             />
                           </motion.div>

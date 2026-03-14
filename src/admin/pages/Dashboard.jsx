@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAdminAuth } from "../AdminAuthContext";
+import { apiUrl } from "../../config/api";
 
 function StatusBadge({ status }) {
   const colors = {
@@ -54,10 +55,10 @@ export default function Dashboard() {
   useEffect(() => {
     const headers = { Authorization: `Bearer ${token}` };
     Promise.all([
-      fetch("http://localhost:5000/api/contact/admin/stats", { headers }).then(r => r.json()),
-      fetch("http://localhost:5000/api/contact/admin?limit=5", { headers }).then(r => r.json()),
-      fetch("http://localhost:5000/api/admin/content", { headers }).then(r => r.json()),
-      fetch("http://localhost:5000/api/admin/media", { headers }).then(r => r.json()),
+      fetch(apiUrl("/api/contact/admin/stats"), { headers }).then(r => r.json()),
+      fetch(apiUrl("/api/contact/admin?limit=5"), { headers }).then(r => r.json()),
+      fetch(apiUrl("/api/admin/content"), { headers }).then(r => r.json()),
+      fetch(apiUrl("/api/admin/media"), { headers }).then(r => r.json()),
     ]).then(([statsData, contactsData, contentData, mediaData]) => {
       if (statsData.success) setContactStats(statsData.data);
       if (contactsData.success) setRecentContacts(contactsData.data);

@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Footer from "../NewComponents/Footer";
 import video from "../assets/Motion_Graphics.mp4";
 import { useSiteContent, g, gj } from "../hooks/useSiteContent";
+import { BRAND_NAME, DEFAULT_OG_IMAGE, SITE_URL, buildCanonicalUrl } from "../seo/siteMeta";
 
 const DEFAULT_SERVICES = [
   {
@@ -104,6 +106,37 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Digital Marketing Company in India | Infotattva Business Solutions | Home | {BRAND_NAME}</title>
+        <meta name="description" content="Infotattva Business Solutions is a leading digital marketing company in India providing SEO, social media marketing, website development and performance marketing services for global brands." />
+        <meta name="keywords" content="Digital Marketing Company in India, SEO Company India, Social Media Marketing Agency India, Website Development Company India, Performance Marketing Agency India" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={BRAND_NAME} />
+        <meta property="og:description" content="Web & mobile app development, cybersecurity, digital marketing, and AI-driven services." />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={BRAND_NAME} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:url" content={buildCanonicalUrl('/')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={BRAND_NAME} />
+        <meta name="twitter:description" content="Web & mobile app development, cybersecurity, digital marketing, and AI-driven services." />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <link rel="canonical" href={buildCanonicalUrl('/')} />
+      </Helmet>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "url": buildCanonicalUrl("/"),
+          "name": BRAND_NAME,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": `${SITE_URL}/?s={search_term_string}`,
+            "query-input": "required name=search_term_string"
+          }
+        })}</script>
+      </Helmet>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50">
         {/* Animated background elements */}

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-
-const API = "http://localhost:5000";
+import { apiUrl } from "../config/api";
 
 // Module-level cache so all components share one fetch
 let _cache = null;
@@ -15,7 +14,7 @@ export function useSiteContent() {
       return;
     }
     if (!_pending) {
-      _pending = fetch(`${API}/api/admin/content/public`)
+      _pending = fetch(apiUrl("/api/admin/content/public"))
         .then((r) => r.json())
         .then((data) => {
           _cache = data.success ? data.data : {};

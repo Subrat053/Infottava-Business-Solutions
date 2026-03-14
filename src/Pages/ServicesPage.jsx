@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import Footer from "../NewComponents/Footer";
 import { useSiteContent, g, gj } from "../hooks/useSiteContent";
+import { BRAND_NAME, DEFAULT_OG_IMAGE, buildCanonicalUrl } from "../seo/siteMeta";
 
 const DEFAULT_SERVICES = [
   {
@@ -108,6 +110,33 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-white pt-20">
+      <Helmet>
+        <title>Digital Marketing Services in India | SEO, SMM, PPC | Services | {BRAND_NAME}</title>
+        <meta name="description" content="Explore Infottava's services: web & app development, cybersecurity, digital marketing, AI-driven solutions, and more.Explore our digital marketing services including SEO, social media marketing, Google Ads, branding and website development for Indian and international businesses." />
+        <meta name="keywords" content="Digital Marketing Services in India, SEO Services India, Social Media Marketing Agency India, PPC Advertising India, Website Development Company India" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`Services | ${BRAND_NAME}`} />
+        <meta property="og:description" content="Web & app development, cybersecurity, digital marketing, AI services and more." />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={BRAND_NAME} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:url" content={buildCanonicalUrl('/services')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Services | ${BRAND_NAME}`} />
+        <meta name="twitter:description" content="Web & app development, cybersecurity, digital marketing, AI services and more." />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <link rel="canonical" href={buildCanonicalUrl('/services')} />
+      </Helmet>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": buildCanonicalUrl("/") },
+            { "@type": "ListItem", "position": 2, "name": "Services", "item": buildCanonicalUrl("/services") }
+          ]
+        })}</script>
+      </Helmet>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -154,7 +183,10 @@ const ServicesPage = () => {
                     <img
                       src={service.image}
                       alt={service.title}
+                      width="1200"
+                      height="800"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
                     />
 
                     {/* Gradient Overlay */}

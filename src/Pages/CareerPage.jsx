@@ -2,6 +2,8 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Footer from '../NewComponents/Footer';
+import { Helmet } from 'react-helmet-async';
+import { BRAND_NAME, DEFAULT_OG_IMAGE, buildCanonicalUrl } from '../seo/siteMeta';
 
 /* ─────────────────────────── Application Modal ─────────────────────────── */
 const ApplicationModal = ({ position, onClose }) => {
@@ -334,6 +336,32 @@ const CareerPage = () => {
 
   return (
     <div className="min-h-screen bg-white pt-20">
+      <Helmet>
+        <title>Career | {BRAND_NAME}</title>
+        <meta name="description" content="Explore career opportunities at Infottava Business Solutions — join our team of engineers, designers, and marketers." />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`Career | ${BRAND_NAME}`} />
+        <meta property="og:description" content="Work with us on innovative projects in web, mobile, AI, and digital transformation." />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={BRAND_NAME} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:url" content={buildCanonicalUrl('/career')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Career | ${BRAND_NAME}`} />
+        <meta name="twitter:description" content="Work with us on innovative projects in web, mobile, AI, and digital transformation." />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <link rel="canonical" href={buildCanonicalUrl('/career')} />
+      </Helmet>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": buildCanonicalUrl("/") },
+            { "@type": "ListItem", "position": 2, "name": "Career", "item": buildCanonicalUrl("/career") }
+          ]
+        })}</script>
+      </Helmet>
       {/* Application Modal */}
       {selectedPosition && (
         <ApplicationModal

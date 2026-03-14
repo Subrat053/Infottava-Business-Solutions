@@ -113,6 +113,8 @@ const TestimonialCard = ({ testimonial, index }) => (
         <img
           src={testimonial.image}
           alt={testimonial.name}
+          width="40"
+          height="40"
           className="w-10 h-10 rounded-full object-cover ring-2 ring-neon-green/30"
         />
         <div>
@@ -194,7 +196,9 @@ const Testimonials = () => {
                   <img
                     key={i}
                     src={t.image}
-                    alt=""
+                    alt={t.name}
+                    width="32"
+                    height="32"
                     className="w-8 h-8 rounded-full border-2 border-dark-950"
                   />
                 ))}

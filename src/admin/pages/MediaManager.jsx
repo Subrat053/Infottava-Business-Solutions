@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useAdminAuth } from "../AdminAuthContext";
+import { apiUrl } from "../../config/api";
 
 const CATEGORIES = [
   "team",
@@ -25,12 +26,10 @@ export default function MediaManager() {
   const [msg, setMsg] = useState("");
   const fileRef = useRef();
 
-  const API = "http://localhost:5000";
-
   const fetchMedia = async () => {
     const params = new URLSearchParams({ page, limit: 24 });
     if (category) params.append("category", category);
-    const res = await fetch(`${API}/api/admin/media?${params}`, {
+    const res = await fetch(apiUrl(`/api/admin/media?${params}`), {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -53,7 +52,7 @@ export default function MediaManager() {
     fd.append("category", uploadForm.category);
     fd.append("altText", uploadForm.altText);
 
-    const res = await fetch(`${API}/api/admin/media/upload`, {
+    const res = await fetch(apiUrl("/api/admin/media/upload"), {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: fd,
@@ -72,7 +71,7 @@ export default function MediaManager() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this image? This cannot be undone.")) return;
-    const res = await fetch(`${API}/api/admin/media/${id}`, {
+    const res = await fetch(apiUrl(`/api/admin/media/${id}`), {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -83,7 +82,7 @@ export default function MediaManager() {
   };
 
   const copyUrl = (url) => {
-    navigator.clipboard.writeText(`${API}${url}`);
+    navigator.clipboard.writeText(apiUrl(url));
     flash("📋 URL copied to clipboard.");
   };
 
@@ -196,8 +195,11 @@ export default function MediaManager() {
             >
               <div className="aspect-square bg-gray-800 overflow-hidden">
                 <img
-                  src={`${API}${m.url}`}
+                  src={apiUrl(m.url)}
                   alt={m.altText || m.originalname}
+                  width="400"
+                  height="400"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                 />
               </div>

@@ -626,7 +626,18 @@ const About = ({ onHover, onLeave }) => {
                           whileHover={{ scale: 1.05, rotate: 5 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full object-cover" />
+                          <img
+                            src={member.image || sd}
+                            alt={member.name}
+                            width="128"
+                            height="128"
+                            onError={(e) => {
+                              if (e.currentTarget.dataset.fallbackApplied) return;
+                              e.currentTarget.dataset.fallbackApplied = "true";
+                              e.currentTarget.src = sd;
+                            }}
+                            className="w-32 h-32 rounded-full object-cover"
+                          />
                         </motion.div>
                         {/* Status indicator */}
                         <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 rounded-full border-2 border-dark-900 shadow-lg" />

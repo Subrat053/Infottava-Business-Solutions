@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import logo from '../../public/logo-rmbg.png';
+import logo from '/logo-rmbg.png';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +60,7 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
               className="flex items-center space-x-2"
             >
-              <img src={logo} alt="Logo"  className='h-[55px] object-contain scale-125 lg:scale-150'/>
+              <img src={logo} alt="Logo" width="165" height="55" loading="eager" className='h-[55px] object-contain scale-125 lg:scale-150'/>
             </motion.div>
           </Link>
 

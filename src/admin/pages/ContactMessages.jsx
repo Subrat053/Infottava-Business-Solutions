@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAdminAuth } from "../AdminAuthContext";
+import { apiUrl } from "../../config/api";
 
 const STATUS_COLORS = {
   new: "bg-blue-900/40 text-blue-300 border-blue-700",
@@ -25,7 +26,7 @@ export default function ContactMessages() {
     if (search) params.append("search", search);
 
     const res = await fetch(
-      `http://localhost:5000/api/contact/admin?${params}`,
+      apiUrl(`/api/contact/admin?${params}`),
       { headers: { Authorization: `Bearer ${token}` } },
     );
     const data = await res.json();
@@ -43,7 +44,7 @@ export default function ContactMessages() {
   const handleView = async (contact) => {
     setSelected(contact);
     if (contact.status === "new") {
-      await fetch(`http://localhost:5000/api/contact/admin/${contact._id}`, {
+      await fetch(apiUrl(`/api/contact/admin/${contact._id}`), {
         headers: { Authorization: `Bearer ${token}` },
       });
       setContacts((prev) =>
@@ -53,7 +54,7 @@ export default function ContactMessages() {
   };
 
   const handleStatusChange = async (id, status) => {
-    const res = await fetch(`http://localhost:5000/api/contact/admin/${id}`, {
+    const res = await fetch(apiUrl(`/api/contact/admin/${id}`), {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +71,7 @@ export default function ContactMessages() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this message?")) return;
-    const res = await fetch(`http://localhost:5000/api/contact/admin/${id}`, {
+    const res = await fetch(apiUrl(`/api/contact/admin/${id}`), {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

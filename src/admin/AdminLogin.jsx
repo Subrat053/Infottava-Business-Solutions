@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useAdminAuth } from "./AdminAuthContext";
+import { apiUrl } from "../config/api";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -15,7 +17,7 @@ export default function AdminLogin() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(apiUrl("/api/auth/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -36,6 +38,11 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
+      <Helmet>
+        <title>Admin Login | Infottava Business Solutions</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+      </Helmet>
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-1">Admin Panel</h1>

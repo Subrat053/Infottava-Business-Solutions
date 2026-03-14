@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import logo from '../../public/logo-rmbg.png';
+import logo from '/logo-rmbg.png';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -68,7 +68,7 @@ const Footer = () => {
                             </motion.div>
                         </Link> */}
                         <div className="flex p-2 rounded-lg items-start gap-3 mt-2 mb-6">
-                            <img src={logo} alt="Infotattva Logo" className="h-20 shadow-sm bg-gray-400/50 rounded-lg" />
+                            <img src={logo} alt="Infotattva Logo" width="240" height="80" loading="eager" className="h-20 shadow-sm bg-gray-400/50 rounded-lg" />
                             <p className="text-gray-400 text-sm leading-relaxed max-w-sm mt-1.5">
                                 Transforming businesses through innovative digital solutions. Your success is our mission.
                             </p>

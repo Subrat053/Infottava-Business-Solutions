@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
 import Footer from '../NewComponents/Footer';
+import { BRAND_NAME, DEFAULT_OG_IMAGE, buildCanonicalUrl } from '../seo/siteMeta';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +28,33 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-white pt-20">
+      <Helmet>
+        <title>Contact Infotattva | Digital Marketing Company in India |Contact | {BRAND_NAME}</title>
+        <meta name="description" content="Contact Infottava Business Solutions for web development, mobile apps, cloud solutions, and digital marketing services. Contact Infotattva Business Solutions for SEO, social media marketing, website development and branding services in India and worldwide." />
+        <meta name="keywords" content="Contact Digital Marketing Company India, SEO Company India, Social Media Marketing Agency India, Website Development Company India, Performance Marketing Agency India" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`Contact | ${BRAND_NAME}`} />
+        <meta property="og:description" content="Get in touch with Infottava for inquiries about our digital and IT services." />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={BRAND_NAME} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:url" content={buildCanonicalUrl('/contact')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Contact | ${BRAND_NAME}`} />
+        <meta name="twitter:description" content="Get in touch with Infottava for inquiries about our digital and IT services." />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <link rel="canonical" href={buildCanonicalUrl('/contact')} />
+      </Helmet>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": buildCanonicalUrl("/") },
+            { "@type": "ListItem", "position": 2, "name": "Contact", "item": buildCanonicalUrl("/contact") }
+          ]
+        })}</script>
+      </Helmet>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
         <motion.div

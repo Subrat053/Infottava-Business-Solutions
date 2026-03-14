@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import Footer from '../NewComponents/Footer';
+import { BRAND_NAME, DEFAULT_OG_IMAGE, buildCanonicalUrl } from '../seo/siteMeta';
 
 const ServiceDetailPage = () => {
   const { serviceId } = useParams();
@@ -347,6 +349,10 @@ const ServiceDetailPage = () => {
     return (
       <div className="min-h-screen bg-white pt-20 flex items-center justify-center">
         <div className="text-center">
+          <Helmet>
+            <title>Service Not Found | {BRAND_NAME}</title>
+            <meta name="robots" content="noindex" />
+          </Helmet>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Service Not Found</h1>
           <Link to="/" className="text-blue-600 hover:underline">Return to Home</Link>
         </div>
@@ -356,6 +362,33 @@ const ServiceDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>{service.title} | {BRAND_NAME}</title>
+        <meta name="description" content={service.description} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`${service.title} | ${BRAND_NAME}`} />
+        <meta property="og:description" content={service.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={BRAND_NAME} />
+        <meta property="og:image" content={service.image || DEFAULT_OG_IMAGE} />
+        <meta property="og:url" content={buildCanonicalUrl('/services/' + serviceId)} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${service.title} | ${BRAND_NAME}`} />
+        <meta name="twitter:description" content={service.description} />
+        <meta name="twitter:image" content={service.image || DEFAULT_OG_IMAGE} />
+        <link rel="canonical" href={buildCanonicalUrl('/services/' + serviceId)} />
+      </Helmet>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": buildCanonicalUrl("/") },
+            { "@type": "ListItem", "position": 2, "name": "Services", "item": buildCanonicalUrl("/services") },
+            { "@type": "ListItem", "position": 3, "name": service.title, "item": buildCanonicalUrl('/services/' + serviceId) }
+          ]
+        })}</script>
+      </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pt-24">

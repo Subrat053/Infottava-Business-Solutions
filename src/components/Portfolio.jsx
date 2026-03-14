@@ -184,11 +184,20 @@ const Portfolio = ({ onHover, onLeave }) => {
               >
                 <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                   {/* Image */}
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={`${project.image.replace(/w=\d+/, 'w=400').replace(/auto=format/, 'auto=format&fm=webp')} 400w, ${project.image.replace(/w=\d+/, 'w=800').replace(/auto=format/, 'auto=format&fm=webp')} 800w`
+                    />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      width="800"
+                      height="600"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </picture>
 
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/50 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />

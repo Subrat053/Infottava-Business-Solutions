@@ -25,7 +25,10 @@ const Loader = () => {
             animate={{ y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <img src="/logo-rmbg.png" alt="InfoTattva Logo" className="w-24 h-24 lg:scale-150 mb-4 ml-28 drop-shadow-[0_0_180px_rgba(255,255,255,0.8)] " />
+            <picture>
+              <source srcSet="/logo-rmbg.webp" type="image/webp" />
+              <img src="/logo-rmbg.png" alt="InfoTattva Logo" width="96" height="96" loading="eager" className="w-24 h-24 lg:scale-150 mb-4 ml-28 drop-shadow-[0_0_180px_rgba(255,255,255,0.8)] " />
+            </picture>
             {/* <h1 className="text-4xl md:text-5xl font-bold mb-2">
               <span className="text-neon-blue">Info</span>
               <span className="text-neon-green">tattva</span>
