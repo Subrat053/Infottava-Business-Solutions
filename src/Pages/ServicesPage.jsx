@@ -2,111 +2,11 @@ import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import Footer from "../NewComponents/Footer";
-import { useSiteContent, g, gj } from "../hooks/useSiteContent";
+import { SERVICES_DATA } from "../data/servicesData";
 import { BRAND_NAME, DEFAULT_OG_IMAGE, buildCanonicalUrl } from "../seo/siteMeta";
 
-const DEFAULT_SERVICES = [
-  {
-    id: "web-development",
-    title: "Web Development",
-    icon: "💻",
-    description:
-      "Build powerful, scalable web applications with modern technologies. From responsive websites to complex web platforms, we deliver solutions that drive business growth and enhance user engagement.",
-    gradient: "from-blue-500 via-blue-600 to-cyan-600",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "Responsive Design",
-      "SEO Optimized",
-      "Fast Performance",
-      "Custom CMS Integration",
-    ],
-  },
-  {
-    id: "app-development",
-    title: "App Development",
-    icon: "📱",
-    description:
-      "Create stunning native and cross-platform mobile applications for iOS and Android. Deliver seamless user experiences that keep customers engaged and drive conversions.",
-    gradient: "from-purple-500 via-purple-600 to-pink-600",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "Cross-Platform",
-      "Native Performance",
-      "Push Notifications",
-      "Offline Support",
-    ],
-  },
-  {
-    id: "cybersecurity",
-    title: "Cybersecurity",
-    icon: "🔒",
-    description:
-      "Protect your digital assets with comprehensive security solutions. From threat detection to compliance management, we safeguard your business against evolving cyber threats.",
-    gradient: "from-red-500 via-orange-500 to-yellow-500",
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "Threat Detection",
-      "Compliance Management",
-      "Security Audits",
-      "24/7 Monitoring",
-    ],
-  },
-  {
-    id: "digital-marketing",
-    title: "Digital Marketing",
-    icon: "📊",
-    description:
-      "Amplify your online presence with data-driven marketing strategies. SEO, social media, PPC, and content marketing solutions designed to grow your brand and increase ROI.",
-    gradient: "from-green-500 via-emerald-600 to-teal-600",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "SEO & SEM",
-      "Social Media Marketing",
-      "Content Strategy",
-      "Analytics & Reporting",
-    ],
-  },
-  {
-    id: "ai-driven-services",
-    title: "AI Driven Services",
-    icon: "🤖",
-    description:
-      "Harness the power of artificial intelligence and machine learning. From intelligent chatbots to predictive analytics, transform your business operations with cutting-edge AI solutions.",
-    gradient: "from-indigo-500 via-purple-600 to-pink-600",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "Machine Learning",
-      "Natural Language Processing",
-      "Predictive Analytics",
-      "Computer Vision",
-    ],
-  },
-  {
-    id: "game-development",
-    title: "Game Development",
-    icon: "🎮",
-    description:
-      "Design and develop engaging games for mobile, web, and desktop platforms. Create immersive gaming experiences with stunning graphics, smooth gameplay, and innovative mechanics.",
-    gradient: "from-pink-500 via-rose-600 to-red-600",
-    image:
-      "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "2D & 3D Games",
-      "Multiplayer Support",
-      "Cross-Platform",
-      "Game Monetization",
-    ],
-  },
-];
-
 const ServicesPage = () => {
-  const c = useSiteContent();
-  const services = gj(c, "services", "list", DEFAULT_SERVICES);
+  const services = SERVICES_DATA;
 
   return (
     <div className="min-h-screen bg-white pt-20">
@@ -147,15 +47,10 @@ const ServicesPage = () => {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {g(c, "services", "pageHeading", "Our Services")}
+              Our Services
             </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              {g(
-                c,
-                "services",
-                "pageSubtext",
-                "Comprehensive digital solutions tailored to elevate your business in the digital age",
-              )}
+              Comprehensive digital solutions tailored to elevate your business in the digital age
             </p>
           </motion.div>
 

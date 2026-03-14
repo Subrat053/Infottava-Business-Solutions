@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import logo from '/logo-rmbg.png';
+import logo from '/logo-rmbg.webp';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

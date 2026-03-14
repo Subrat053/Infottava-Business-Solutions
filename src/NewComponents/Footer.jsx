@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import logo from '/logo-rmbg.png';
+import logo from '/logo-rmbg.webp';
+import { SERVICES_DATA } from "../data/servicesData";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
+    const serviceLinks = SERVICES_DATA.map((service) => ({
+        name: service.title,
+        path: `/services/${service.slug || service.id}`,
+    }));
 
     const footerLinks = {
         Company: [
@@ -12,14 +17,7 @@ const Footer = () => {
             { name: "Contact", path: "/contact" },
             { name: "About Us", path: "/about" },
         ],
-        Services: [
-            { name: "Web Development", path: "/services/web-development" },
-            { name: "App Development", path: "/services/app-development" },
-            { name: "Cybersecurity", path: "/services/cybersecurity" },
-            { name: "Digital Marketing", path: "/services/digital-marketing" },
-            { name: "AI Driven Services", path: "/services/ai-driven-services" },
-            { name: "Game Development", path: "/services/game-development" },
-        ],
+        Services: serviceLinks,
 
         Resources: [
             { name: "Privacy Policy", path: "#" },

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
 import Footer from '../NewComponents/Footer';
 import { BRAND_NAME, DEFAULT_OG_IMAGE, buildCanonicalUrl } from '../seo/siteMeta';
+import { SERVICES_DATA } from '../data/servicesData';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -134,12 +135,11 @@ const ContactPage = () => {
                       className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     >
                       <option value="">Select a service</option>
-                      <option value="web-development">Web Development</option>
-                      <option value="app-development">App Development</option>
-                      <option value="cybersecurity">Cybersecurity</option>
-                      <option value="digital-marketing">Digital Marketing</option>
-                      <option value="ai-driven-services">AI Driven Services</option>
-                      <option value="game-development">Game Development</option>
+                      {SERVICES_DATA.map((service) => (
+                        <option key={service.id} value={service.slug || service.id}>
+                          {service.title}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
