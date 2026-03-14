@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./NewComponents/header";
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import ServicesPage from "./pages/ServicesPage";
-import ServiceDetailPage from "./pages/ServiceDetailPage";
-import CareerPage from "./pages/CareerPage";
-import ContactPage from "./pages/ContactPage";
+import HomePage from "./Pages/HomePage";
+import AboutPage from "./Pages/AboutPage";
+import ServicesPage from "./Pages/ServicesPage";
+import ServiceDetailPage from "./Pages/ServiceDetailPage";
+import CareerPage from "./Pages/CareerPage";
+import ContactPage from "./Pages/ContactPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Admin from "./admin2/Admin";
 
@@ -17,7 +17,6 @@ function App() {
   return (
       <Routes>
         <Route path="/admin/*" element={<Admin/>}/>
-
 
         {/* ── Public website routes ── */}
         <Route
